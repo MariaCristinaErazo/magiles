@@ -43,7 +43,7 @@ public class Persona {
 		
 		
 	}
-
+ 
 	@Override
 	public String toString() {
 		return "Persona [usuario=" + usuario + ", contrasenia=" + contrasenia + "]";

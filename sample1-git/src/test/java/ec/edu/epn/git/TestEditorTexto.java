@@ -31,6 +31,21 @@ private editor ed;
 	
 	}
 	
+	@Test
+	public void testAbrir() {
+		int actual=ed.Abrir();
+		int esperado=1;
+		assertEquals(esperado, actual);
+	
+	}
+	
+	@Test
+	public void testNuevo() {
+		int actual=ed.Nuevo();
+		int esperado=1;
+		assertEquals(esperado, actual);
+	
+	}
 	
 	
 	
