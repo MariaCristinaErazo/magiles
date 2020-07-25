@@ -7,19 +7,21 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.After;
 
-class PersonaTest {
-	Persona per;
+public class PersonaTest {
+	
+  private Persona per;
 	
     @BeforeClass
 	public static void beforeClass() {
         System.out.println("beforeClass");
        
+       
     }
 	
 	@Before
     public void before() {
-        System.out.println("before");
-        per = new Persona();
+      System.out.println("before");
+      per = new Persona();
     }
 	
 	@Test
@@ -38,10 +40,10 @@ class PersonaTest {
 	assertEquals(esperado, actual);
 		
 	}
-	 @After
+	@After
 	  public void after () {
 	      per=null;
 	      System.out.println("after");
 	    }
-	
+
 }
