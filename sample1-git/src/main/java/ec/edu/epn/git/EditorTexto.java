@@ -7,7 +7,7 @@ import java.awt.event.*;
 import javax.swing.plaf.metal.*; 
 import javax.swing.text.*; 
 class editor extends JFrame implements ActionListener { 
-    // Text component 
+    // Área de edición de texto
     JTextArea t; 
   
     // Frame 
@@ -24,36 +24,36 @@ class editor extends JFrame implements ActionListener {
     // Constructor 
     editor() 
     { 
-        // Create a frame 
-        f = new JFrame("editor"); 
+        // Crea un nuevo formulario
+        f = new JFrame("Editor de Texto"); 
   
         try { 
-            // Set metl look and feel 
+            // Seteado del UI
             UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel"); 
   
-            // Set theme to ocean 
+            // Seteado del theme del UI
             MetalLookAndFeel.setCurrentTheme(new OceanTheme()); 
         } 
         catch (Exception e) { 
         } 
   
-        // Text component 
+        // Area de edicion del texto
         t = new JTextArea();
         
           
-        // Create a menubar 
+        // MenuBar
         JMenuBar mb = new JMenuBar(); 
   
-        // Create amenu for menu 
-        JMenu m1 = new JMenu("File"); 
+        // Submenus
+        JMenu m1 = new JMenu("Archivo"); 
   
-        // Create menu items 
+        // Items
         JMenuItem mi1 = new JMenuItem("Nuevo"); 
         JMenuItem mi2 = new JMenuItem("Abrir"); 
         JMenuItem mi3 = new JMenuItem("Guardar"); 
         JMenuItem mi9 = new JMenuItem("Imprimir"); 
   
-        // Add action listener 
+        // Eventos 
         mi1.addActionListener(this); 
         mi2.addActionListener(this); 
         mi3.addActionListener(this); 
@@ -64,15 +64,15 @@ class editor extends JFrame implements ActionListener {
         m1.add(mi3); 
         m1.add(mi9); 
   
-        // Create amenu for menu 
-        JMenu m2 = new JMenu("Edit"); 
+        // Crear submenu
+        JMenu m2 = new JMenu("Editar"); 
   
-        // Create menu items 
+        // Crear menu items 
         JMenuItem mi4 = new JMenuItem("Cortar"); 
         JMenuItem mi5 = new JMenuItem("Copiar"); 
         JMenuItem mi6 = new JMenuItem("Pegar"); 
   
-        // Add action listener 
+        // Eventos
         mi4.addActionListener(this); 
         mi5.addActionListener(this); 
         mi6.addActionListener(this); 
@@ -81,7 +81,7 @@ class editor extends JFrame implements ActionListener {
         m2.add(mi5); 
         m2.add(mi6); 
   
-        JMenuItem mc = new JMenuItem("close"); 
+        JMenuItem mc = new JMenuItem("Cerrar"); 
   
         mc.addActionListener(this); 
   
@@ -97,26 +97,24 @@ class editor extends JFrame implements ActionListener {
     
     
     public int Guardar(String textArea) {
-    	 JFileChooser j = new JFileChooser("f:"); 
-    	// textArea=t.getText();
-    	
+    	 JFileChooser j = new JFileChooser("f:");    	
     	  
-        // Invoke the showsSaveDialog function to show the save dialog 
+        // Ventana de dialogo para la accion guardar
         int r = j.showSaveDialog(null); 
 
         if (r == JFileChooser.APPROVE_OPTION) { 
 
-            // Set the label to the path of the selected directory 
+            // Obtiene y setea la ruta de guardado del archivo
             File fi = new File(j.getSelectedFile().getAbsolutePath()); 
 
             try { 
-                // Create a file writer 
+                // Crear el archivo a ser escrito
                 FileWriter wr = new FileWriter(fi, false); 
 
-                // Create buffered writer to write 
+                // Crea un buffer para escribir el archivo
                 BufferedWriter w = new BufferedWriter(wr); 
 
-                // Write 
+                // Escritura del archivo
                 w.write(textArea); 
 
                 w.flush(); 
@@ -128,7 +126,7 @@ class editor extends JFrame implements ActionListener {
                 return 0;
             } 
         } 
-        // If the user cancelled the operation 
+        // Si el usuario cancela la operacion de guardar
         else {
             JOptionPane.showMessageDialog(f, "El usuario canceló la operación");
             return 0;
@@ -137,7 +135,7 @@ class editor extends JFrame implements ActionListener {
   
     public void Imprimir() {
     	try { 
-            // print the file 
+            // Imprime el archivo
             t.print(); 
         } 
         catch (Exception evt) { 
@@ -147,37 +145,37 @@ class editor extends JFrame implements ActionListener {
     }
     
     public int Abrir() {
-    	// Create an object of JFileChooser class 
+    	// Crea un objeto de la clase JFileChooser 
         JFileChooser j = new JFileChooser("f:"); 
 
-        // Invoke the showsOpenDialog function to show the save dialog 
+        // Ventana de dialogo para la operacion de Abrir
         int r = j.showOpenDialog(null); 
 
-        // If the user selects a file 
+        // Si el usuario selecciona un archivo
         if (r == JFileChooser.APPROVE_OPTION) { 
-            // Set the label to the path of the selected directory 
+            // Obtiene y setea la ruta del archivo que se va a Abrir
             File fi = new File(j.getSelectedFile().getAbsolutePath()); 
 
             try { 
-                // String 
+                // Cadena para guardar lo leido desde el archivo 
                 String s1 = "", sl = "";
                 if(fi.getName().endsWith("txt")) {
 
-                // File reader 
+                // Archivo de lectura 
                 FileReader fr = new FileReader(fi); 
 
-                // Buffered reader 
+                // Buffer de lectura
                 BufferedReader br = new BufferedReader(fr); 
 
-                // Initilize sl 
+                // Inicializa la lectura 
                 sl = br.readLine(); 
 
-                // Take the input from the file 
+                // Guarda el contenido del texto en el string s1
                 while ((s1 = br.readLine()) != null) { 
                     sl = sl + "\n" + s1; 
                 } 
 
-                // Set the text 
+                // Setea el area de edicion con el valor del estring s1
                 t.setText(sl);
                 return 1;
                 }
@@ -190,7 +188,7 @@ class editor extends JFrame implements ActionListener {
             }
             
         } 
-        // If the user cancelled the operation 
+        // Si el usuario cancela la operacion de Abrir
         else {
             JOptionPane.showMessageDialog(f, "El usuario cancelo la operacion"); 
             return 0;
@@ -204,7 +202,7 @@ class editor extends JFrame implements ActionListener {
             return 0;
     		 
     }
-    // If a button is pressed 
+    // Si un item del menu es seleccionado
     public void actionPerformed(ActionEvent e) 
     { 
         String s = e.getActionCommand(); 
