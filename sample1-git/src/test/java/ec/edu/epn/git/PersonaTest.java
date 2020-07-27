@@ -23,7 +23,7 @@ public class PersonaTest {
       System.out.println("before");
       per = new Persona();
     }
-	
+	//test para el metodo verificarUsuario
 	@Test
 	public void testVerificarUsuario() {
     per.setUsuario("Edwin");
@@ -32,6 +32,7 @@ public class PersonaTest {
 	assertEquals(esperado, actual);
 	}
 	
+	//test para el metodo verificarContrasenia
 	@Test
 	public void testVerificarContrasenia() {
 	per.setContrasenia("asdf1234");
@@ -45,5 +46,4 @@ public class PersonaTest {
 	      per=null;
 	      System.out.println("after");
 	    }
-
 }
