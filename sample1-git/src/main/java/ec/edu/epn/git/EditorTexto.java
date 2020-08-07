@@ -133,6 +133,26 @@ class editor extends JFrame implements ActionListener {
         }
     }
   
+    public int Guardar(String ruta, String texto) {
+    	
+    	try {
+            File file = new File(ruta);
+            // Si el archivo no existe es creado
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(texto);
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    
+    	return 1;
+    }
+    
     public void Imprimir() {
     	try { 
             // Imprime el archivo
@@ -194,6 +214,29 @@ class editor extends JFrame implements ActionListener {
             return 0;
         }
     }
+    public int Abrir(String ruta) {
+    	String s1 = "", sl = "";
+    	try {
+	    	FileReader fr = new FileReader(ruta); 		
+		    // Buffer de lectura
+		    BufferedReader br = new BufferedReader(fr); 		
+		    // Inicializa la lectura 
+		    sl = br.readLine(); 		
+		    // Guarda el contenido del texto en el string s1
+		    while ((s1 = br.readLine()) != null) { 
+		        sl = sl + "\n" + s1; 
+		    }	
+		    // Setea el area de edicion con el valor del estring s1
+		    t.setText(sl);
+		    return 1;
+		    }
+
+		catch (Exception e) { 
+			e.printStackTrace();
+            return 0;
+		}
+    }
+    
     public int Nuevo() {
     	 t.setText("");
     	 if(t.getText().isEmpty()==true)

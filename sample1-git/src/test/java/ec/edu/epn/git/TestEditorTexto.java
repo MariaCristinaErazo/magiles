@@ -25,7 +25,9 @@ private editor ed;
 	
 	@Test
 	public void testGuardar() {
-		int actual=ed.Guardar("Caso de Prueba");
+		String ruta = "C:/Users/User/Desktop/testGuardar.txt";
+		String texto = "Hola mundo!";
+		int actual=ed.Guardar(ruta,texto);
 		int esperado=1;
 		assertEquals(esperado, actual);
 	
@@ -33,7 +35,8 @@ private editor ed;
 	
 	@Test
 	public void testAbrir() {
-		int actual=ed.Abrir();
+		String ruta = "C:/Users/User/Desktop/testGuardar.txt";
+		int actual=ed.Abrir(ruta);
 		int esperado=1;
 		assertEquals(esperado, actual);
 	
