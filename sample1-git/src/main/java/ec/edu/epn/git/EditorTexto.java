@@ -186,7 +186,6 @@ class editor extends JFrame implements ActionListener {
 
                 // Buffer de lectura
                 BufferedReader br = new BufferedReader(fr); 
-
                 // Inicializa la lectura 
                 sl = br.readLine(); 
 
